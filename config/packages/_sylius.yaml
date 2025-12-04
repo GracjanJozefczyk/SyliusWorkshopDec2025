@@ -279,3 +279,40 @@ sylius_twig_hooks:
         'sylius_shop.base#javascripts':
             app_javascripts:
                 template: 'shop/javascripts.html.twig'
+
+sylius_grid:
+    grids:
+        sylius_admin_brand:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%sylius.model.brand.class%"
+            fields:
+                id:
+                    type: string
+                    label: sylius.grid.id
+                code:
+                    type: string
+                    label: sylius.grid.code
+                name:
+                    type: string
+                    sortable: ~
+                    label: sylius.grid.name
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+                bulk:
+                    delete:
+                        type: delete
+            filters:
+                search:
+                    type: string
+                    label: sylius.grid.search
+                    options:
+                        fields: [code, name]
