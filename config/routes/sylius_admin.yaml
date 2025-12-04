@@ -2,6 +2,18 @@ sylius_admin:
     resource: "@SyliusAdminBundle/Resources/config/routing.yml"
     prefix: '/%sylius_admin.path_name%'
 
+sylius_admin_brand_create:
+    path: 'admin/brands/new'
+    methods: [GET, POST]
+    defaults:
+        _controller: sylius.controller.brand::createAction
+        _sylius:
+            template: "@SyliusAdmin/shared/crud/create.html.twig"
+            redirect: sylius_admin_brand_index
+            section: admin
+            factory:
+                method: createWithCode
+    
 sylius_admin_brand:
     resource: |
         alias: sylius.brand
@@ -9,5 +21,6 @@ sylius_admin_brand:
         templates: "@SyliusAdmin\\shared\\crud"
         redirect: update
         grid: sylius_admin_brand
+        except: [create]
     type: sylius.resource
     prefix: /admin
